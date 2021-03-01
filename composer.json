@@ -1,0 +1,16 @@
+{
+    "name": "brisum/pattern",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Oleksandr Manchenko",
+            "email": "omanchenko@brisum.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Brisum\\Pattern\\": "src"
+        }
+    },
+    "require": {}
+}
