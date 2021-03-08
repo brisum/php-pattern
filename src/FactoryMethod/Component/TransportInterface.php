@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Brisum\Pattern\FactoryMethod\Message\Component;
+namespace Brisum\Pattern\FactoryMethod\Component;
 
 interface TransportInterface
 {

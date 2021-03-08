@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Brisum\Pattern\FactoryMethod\Message\Email;
+namespace Brisum\Pattern\FactoryMethod\Transport\Sms;
 
-use Brisum\Pattern\FactoryMethod\Message\Component\MessageInterface;
+use Brisum\Pattern\FactoryMethod\Component\MessageInterface;
 
-class EmailMessage implements MessageInterface
+class SmsMessage implements MessageInterface
 {
     public function send(string $destination, string $subject, string $text): bool
     {
-        echo "Send email message...\n";
+        echo "Send sms message...\n";
         echo "Destination: {$destination}\n";
         echo "Subject: {$subject}\n";
         echo "Text: {$text}\n";

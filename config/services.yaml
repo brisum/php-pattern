@@ -3,7 +3,6 @@ services:
     autowire: true
     autoconfigure: true
     public: true
-    shared: false
 
-  DI\:
-    resource: '../src/*'
+  Brisum\Pattern\:
+    resource: '../src/*/*/*'
