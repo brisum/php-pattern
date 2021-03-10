@@ -8,21 +8,20 @@ use Brisum\Pattern\Behavioral\State\Component\DepositContext;
 use Brisum\Pattern\Behavioral\State\Component\DepositStateInterface;
 use Brisum\Pattern\Behavioral\State\Component\StateInterface;
 
-class ReadyToProcessing implements StateInterface
+class Draft implements StateInterface
 {
     public function process(DepositContext $depositContext): void
     {
-        echo "Switch to " . DepositStateInterface::PENDING . "...\n";
+        echo "Switch to " . DepositStateInterface::READY_TO_PROCESSING . "...\n";
 
-        $nextStatus = DepositStateInterface::PENDING;
-        $nextState = $depositContext->getStateFactory()->createState($nextStatus);
+        $nextState = $depositContext->getStateFactory()->createState(DepositStateInterface::READY_TO_PROCESSING);
 
-        $depositContext->getDepositEntity()->state = $nextStatus;
+        $depositContext->getDepositEntity()->state = (string)$nextState;
         $depositContext->setState($nextState);
     }
 
     public function __toString(): string
     {
-        return DepositStateInterface::READY_TO_PROCESSING;
+        return DepositStateInterface::DRAFT;
     }
 }

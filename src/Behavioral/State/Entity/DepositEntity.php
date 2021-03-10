@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Brisum\Pattern\Behavioral\State\DepositEntity;
+namespace Brisum\Pattern\Behavioral\State\Entity;
 
 class DepositEntity
 {
-    public int $id;
-    public string $status;
+    public string $state;
 }

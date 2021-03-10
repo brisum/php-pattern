@@ -2,7 +2,7 @@
 
 namespace Brisum\Pattern\Behavioral\State\Component;
 
-use Brisum\Pattern\Behavioral\State\DepositEntity\DepositEntity;
+use Brisum\Pattern\Behavioral\State\Entity\DepositEntity;
 
 class DepositContext
 {
@@ -10,27 +10,16 @@ class DepositContext
     private DepositEntity $depositEntity;
     private StateInterface $state;
 
-    private function __construct(DepositEntity $depositEntity, StateInterface $state)
+    public function __construct(StateFactory $stateFactory, DepositEntity $depositEntity)
     {
+        $this->stateFactory = $stateFactory;
         $this->depositEntity = $depositEntity;
-        $this->state = $state;
-    }
-
-    public function create(DepositEntity $depositEntity): DepositContext
-    {
-        $state = $this->stateFactory->createState($depositEntity->status);
-
-        return new DepositContext($depositEntity, $state);
+        $this->state = $stateFactory->createState($depositEntity->state);
     }
 
     public function process(): void
     {
         $this->state->process($this);
-    }
-
-    public function setStateFactory(StateFactory $stateFactory): void
-    {
-        $this->stateFactory = $stateFactory;
     }
 
     public function getStateFactory(): StateFactory
