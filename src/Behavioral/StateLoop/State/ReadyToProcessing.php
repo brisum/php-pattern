@@ -14,11 +14,7 @@ class ReadyToProcessing implements StateInterface
     {
         echo "Switch to " . DepositStateInterface::PENDING . "...\n";
 
-        $nextStatus = DepositStateInterface::PENDING;
-        $nextState = $depositContext->getStateFactory()->createState($nextStatus);
-
-        $depositContext->getDepositEntity()->state = $nextStatus;
-        $depositContext->setState($nextState);
+        $depositContext->getDepositBuilder()->setState(DepositStateInterface::PENDING);
     }
 
     public function __toString(): string

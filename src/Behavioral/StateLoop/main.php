@@ -11,21 +11,21 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 global $di;
 $depositEntity = new DepositEntity();
-$depositEntity->state = DepositStateInterface::DRAFT;
 $stateFactory = new StateFactory($di);
-$depositContext = new DepositContext($stateFactory, $depositEntity);
+$depositContext = new DepositContext($depositEntity);
 
 for ($step = 1; $step <= 100; $step++)
 {
-    $depositContext->process();
+    $stateFactory->createState($depositEntity->getState())->process($depositContext);
+    $depositEntity = $depositContext->getDepositBuilder()->getDepositEntity();
 
-    if (DepositStateInterface::COMPLETE === $depositContext->getDepositEntity()->state)
+    if (DepositStateInterface::COMPLETE === $depositEntity->getState())
     {
         echo "Done\n";
         break;
     }
 
-    if (DepositStateInterface::FAILED === $depositContext->getDepositEntity()->state)
+    if (DepositStateInterface::FAILED === $depositEntity->getState())
     {
         echo "Done\n";
         break;

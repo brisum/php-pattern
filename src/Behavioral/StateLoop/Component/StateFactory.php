@@ -21,7 +21,7 @@ class StateFactory
             static function($matches) { return strtoupper($matches[1]); },
             $name
         ));
-        $class =  "Brisum\\Pattern\\Behavioral\\State\\State\\{$name}";
+        $class =  "Brisum\\Pattern\\Behavioral\\StateLoop\\State\\{$name}";
 
         if (!class_exists($class)) {
             throw new StateNotFoundException($class);

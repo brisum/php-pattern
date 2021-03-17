@@ -14,11 +14,7 @@ class Pending implements StateInterface
     {
         echo "Switch to " . DepositStateInterface::COMPLETE . "...\n";
 
-        $nextStatus = DepositStateInterface::COMPLETE;
-        $nextState = $depositContext->getStateFactory()->createState($nextStatus);
-
-        $depositContext->getDepositEntity()->state = $nextStatus;
-        $depositContext->setState($nextState);
+        $depositContext->getDepositBuilder()->setState(DepositStateInterface::COMPLETE);
     }
 
     public function __toString(): string

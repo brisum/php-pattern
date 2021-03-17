@@ -14,10 +14,7 @@ class Draft implements StateInterface
     {
         echo "Switch to " . DepositStateInterface::READY_TO_PROCESSING . "...\n";
 
-        $nextState = $depositContext->getStateFactory()->createState(DepositStateInterface::READY_TO_PROCESSING);
-
-        $depositContext->getDepositEntity()->state = (string)$nextState;
-        $depositContext->setState($nextState);
+        $depositContext->getDepositBuilder()->setState(DepositStateInterface::READY_TO_PROCESSING);
     }
 
     public function __toString(): string

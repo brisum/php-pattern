@@ -6,34 +6,20 @@ use Brisum\Pattern\Behavioral\StateLoop\Entity\DepositEntity;
 
 class DepositContext
 {
-    private StateFactory $stateFactory;
-    private DepositEntity $depositEntity;
-    private StateInterface $state;
+    private DepositBuilder $depositBuilder;
 
-    public function __construct(StateFactory $stateFactory, DepositEntity $depositEntity)
+    public function __construct(DepositEntity $depositEntity)
     {
-        $this->stateFactory = $stateFactory;
-        $this->depositEntity = $depositEntity;
-        $this->state = $stateFactory->createState($depositEntity->state);
+        $this->depositBuilder = new DepositBuilder($depositEntity);
     }
 
-    public function process(): void
+    public function getDepositBuilder(): DepositBuilder
     {
-        $this->state->process($this);
-    }
-
-    public function getStateFactory(): StateFactory
-    {
-        return $this->stateFactory;
-    }
-
-    public function setState(StateInterface $state): void
-    {
-        $this->state = $state;
+        return $this->depositBuilder;
     }
 
     public function getDepositEntity(): DepositEntity
     {
-        return $this->depositEntity;
+        return $this->depositBuilder->getDepositEntity();
     }
 }
